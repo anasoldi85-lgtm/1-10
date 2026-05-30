@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUTEER - Financial Information Consulting Service</title>
+    <style>
+        :root {
+            --main: #e94c9c;
+            --assist: #5390b3;
+            --emphasis: #3d664e;
+            --neutral: #bcb68b;
+            --white: #ffffff;
+            --dark: #222222;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            color: var(--dark);
+            background-color: #f8f9fa;
+        }
+        /* Header & Nav */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .nav-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--main);
+            text-decoration: none;
+        }
+        .nav-list {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-list li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-list li a:hover {
+            color: var(--main);
+        }
+        .mobile-menu-btn {
+            display: none;
+            border: none;
+            background: transparent;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        .mobile-nav {
+            position: fixed;
+            top:72px;
+            left:0;
+            width:100%;
+            height:0;
+            overflow:hidden;
+            background:#fff;
+            transition: height 0.4s ease;
+            box-shadow:0 4px 8px rgba(0,0,0,0.1);
+        }
+        .mobile-nav.active {
+            height: 320px;
+        }
+        .mobile-nav ul {
+            padding:20px;
+            list-style:none;
+            display:flex;
+            flex-direction:column;
+            gap:20px;
+        }
+        .mobile-nav a {
+            text-decoration:none;
+            color:#333;
+            font-size:18px;
+        }
+        /* Banner */
+        .banner {
+            margin-top:72px;
+            width:100%;
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)), url('https://anasoldi85-lgtm.github.io/1-10/39.jpg') center/cover no-repeat;
+            display:flex;
+            align-items:center;
+            color:#fff;
+        }
+        .banner-content h1 {
+            font-size:52px;
+            margin-bottom:20px;
+        }
+        .banner-content p {
+            font-size:18px;
+            max-width:620px;
+            line-height:1.7;
+            margin-bottom:32px;
+        }
+        .btn-main {
+            padding:14px 32px;
+            background:var(--main);
+            color:#fff;
+            text-decoration:none;
+            border-radius:6px;
+            font-weight:500;
+            transition:opacity 0.3s;
+        }
+        .btn-main:hover {
+            opacity:0.85;
+        }
+        /* Common Section */
+        section {
+            padding:90px 0;
+        }
+        .sec-title {
+            text-align:center;
+            margin-bottom:60px;
+        }
+        .sec-title h2 {
+            font-size:36px;
+            color:var(--dark);
+            margin-bottom:12px;
+        }
+        .sec-title span {
+            display:block;
+            width:70px;
+            height:4px;
+            background:var(--main);
+            margin:0 auto;
+        }
+        /* About Section */
+        #about {
+            background:#fff;
+        }
+        .about-row {
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:50px;
+            align-items:center;
+        }
+        .about-img-box img {
+            width:100%;
+            border-radius:8px;
+            box-shadow:0 8px 24px rgba(0,0,0,0.12);
+        }
+        .about-text h3 {
+            font-size:28px;
+            margin-bottom:20px;
+            color:var(--emphasis);
+        }
+        .about-text p {
+            line-height:1.8;
+            color:#555;
+            margin-bottom:16px;
+        }
+        /* 新增：关于我们子内容 */
+        .about-subcontent {
+            margin-top: 60px;
+            background: #f7f8fc;
+            padding: 40px;
+            border-radius: 8px;
+        }
+        .about-subcontent h4 {
+            font-size: 22px;
+            color: var(--emphasis);
+            margin-bottom: 20px;
+        }
+        .about-advantages {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 25px;
+        }
+        .advantage-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .advantage-item h5 {
+            font-size: 18px;
+            color: var(--main);
+            margin-bottom: 10px;
+        }
+        /* Service Section */
+        #services {
+            background:#f7f8fc;
+        }
+        .service-grid {
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:30px;
+        }
+        .service-card {
+            background:var(--assist);
+            padding:36px 28px;
+            border-radius:10px;
+            color:#fff;
+            transition:transform 0.3s ease;
+            cursor: pointer;
+        }
+        .service-card:hover {
+            transform:translateY(-8px);
+        }
+        .service-card h4 {
+            font-size:22px;
+            margin-bottom:14px;
+            color:var(--emphasis);
+        }
+        .service-card p {
+            line-height:1.7;
+            color:#f1f1f1;
+        }
+        .service-tag {
+            display:inline-block;
+            margin-top:16px;
+            padding:4px 10px;
+            background:var(--neutral);
+            color:#222;
+            border-radius:4px;
+            font-size:13px;
+        }
+        /* 新增：服务详情弹窗 */
+        .service-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-content {
+            background: #fff;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 8px;
+            padding: 40px;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        .modal-content h3 {
+            font-size: 28px;
+            color: var(--emphasis);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--main);
+            padding-bottom: 10px;
+        }
+        .modal-content .service-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 25px;
+        }
+        .modal-content .detail-item h5 {
+            font-size: 18px;
+            color: var(--main);
+            margin-bottom: 10px;
+        }
+        .modal-content .detail-item p {
+            color: #555;
+            line-height: 1.7;
+        }
+        /* Data Module */
+        .data-wrap {
+            background:var(--assist);
+            padding:50px 30px;
+            border-radius:12px;
+            margin:50px 0;
+        }
+        .data-item {
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:25px;
+            text-align:center;
+        }
+        .data-num {
+            font-size:42px;
+            font-weight:700;
+            color:var(--emphasis);
+        }
+        .data-desc {
+            color:var(--neutral);
+            margin-top:8px;
+            font-size:15px;
+        }
+        /* Team Section */
+        #team {
+            background:#fff;
+        }
+        .team-grid {
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:30px;
+        }
+        .team-card {
+            background:#f9f9f9;
+            border-radius:10px;
+            overflow:hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        .team-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .team-card img {
+            width:100%;
+            height:260px;
+            object-fit:cover;
+        }
+        .team-info {
+            padding:22px;
+        }
+        .team-info h5 {
+            font-size:20px;
+            color:var(--main);
+        }
+        .team-info span {
+            color:var(--neutral);
+            font-size:14px;
+        }
+        /* 新增：团队详情描述 */
+        .team-detail {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            display: none;
+        }
+        .team-card:hover .team-detail {
+            display: block;
+        }
+        /* 新增：客户案例板块 */
+        #cases {
+            background: #f7f8fc;
+        }
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .case-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .case-card h4 {
+            font-size: 20px;
+            color: var(--emphasis);
+            margin-bottom: 15px;
+        }
+        .case-card .case-client {
+            color: var(--main);
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .case-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        .case-card .case-result {
+            font-weight: 600;
+            color: var(--emphasis);
+        }
+        /* Contact Page */
+        #contact {
+            background:#f7f8fc;
+        }
+        .contact-row {
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:50px;
+        }
+        .contact-info h3 {
+            font-size:26px;
+            margin-bottom:24px;
+            color:var(--emphasis);
+        }
+        .contact-item {
+            margin-bottom:22px;
+        }
+        .contact-item strong {
+            display:block;
+            color:var(--main);
+            margin-bottom:6px;
+        }
+        .contact-item p {
+            color:#444;
+        }
+        .contact-form input, .contact-form textarea {
+            width:100%;
+            padding:15px;
+            margin-bottom:18px;
+            border:1px solid #ddd;
+            border-radius:6px;
+            font-size:15px;
+        }
+        .contact-form button {
+            padding:15px 36px;
+            background:var(--main);
+            border:none;
+            color:#fff;
+            border-radius:6px;
+            font-size:16px;
+            cursor:pointer;
+            transition:opacity 0.3s;
+        }
+        .contact-form button:hover {
+            opacity:0.85;
+        }
+        .submit-success {
+            color:var(--emphasis);
+            font-weight:500;
+            display:none;
+            margin-top:12px;
+        }
+        /* Footer */
+        footer {
+            background:#222;
+            color:#fff;
+            padding:50px 0 30px;
+        }
+        .footer-row {
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:40px;
+            margin-bottom:40px;
+        }
+        .footer-col h4 {
+            font-size:20px;
+            margin-bottom:20px;
+            color:var(--main);
+        }
+        .footer-col p, .footer-col a {
+            color:#bbb;
+            line-height:1.8;
+            text-decoration:none;
+        }
+        .copyright {
+            text-align:center;
+            padding-top:30px;
+            border-top:1px solid #333;
+            color:#888;
+            font-size:14px;
+        }
+        /* Mobile Responsive */
+        @media(max-width:992px){
+            .nav-list {
+                display:none;
+            }
+            .mobile-menu-btn {
+                display:block;
+            }
+            .about-row, .contact-row {
+                grid-template-columns:1fr;
+            }
+            .service-grid, .team-grid {
+                grid-template-columns:repeat(2,1fr);
+            }
+            .data-item {
+                grid-template-columns:repeat(2,1fr);
+                gap:35px;
+            }
+            .footer-row {
+                grid-template-columns:repeat(2,1fr);
+            }
+            .about-advantages {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-content .service-detail {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media(max-width:576px){
+            .banner-content h1 {
+                font-size:34px;
+            }
+            .service-grid, .team-grid {
+                grid-template-columns:1fr;
+            }
+            .data-item {
+                grid-template-columns:1fr;
+            }
+            .footer-row {
+                grid-template-columns:1fr;
+            }
+            section {
+                padding:60px 0;
+            }
+            .about-advantages {
+                grid-template-columns: 1fr;
+            }
+            .about-subcontent {
+                padding: 20px;
+            }
+            .modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-wrap">
+            <a href="#home" class="logo">NUTEER</a>
+            <ul class="nav-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Our Services</a></li>
+                <li><a href="#team">Expert Team</a></li>
+                <li><a href="#cases">Client Cases</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="menuBtn">☰</button>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Our Services</a></li>
+                <li><a href="#team">Expert Team</a></li>
+                <li><a href="#cases">Client Cases</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Home Banner -->
+    <section id="home" class="banner">
+        <div class="container banner-content">
+            <h1>Professional Financial Information Consulting</h1>
+            <p>NUTEER delivers reliable, customized financial consulting solutions for global investors and enterprises, supporting market analysis, asset planning and risk control with decades of industry experience.</p>
+            <a href="#contact" class="btn-main">Get Free Consultation</a>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about">
+        <div class="container">
+            <div class="sec-title">
+                <h2>About NUTEER</h2>
+                <span></span>
+            </div>
+            <div class="about-row">
+                <div class="about-img-box">
+                    <img src="https://anasoldi85-lgtm.github.io/1-10/40.jpg" alt="NUTEER Company Image">
+                </div>
+                <div class="about-text">
+                    <h3>Global Standard Financial Consultancy Firm</h3>
+                    <p>Founded and registered in England, NUTEER is a professional financial information consulting institution focusing on global financial market research, investment advisory and enterprise financial optimization service. We comply with UK financial industry regulatory standards and serve clients from Europe, Asia and North America.</p>
+                    <p>Our core philosophy is to provide objective, data-driven financial analysis reports, helping customers avoid blind investment risks and formulate long-term stable financial allocation plans. We combine big data statistics and professional analyst team experience to realize customized consulting for individual and institutional clients.</p>
+                    <a href="#services" class="btn-main" style="margin-top:12px;">View Our Services</a>
+                </div>
+            </div>
+
+            <!-- 新增：关于我们子内容 - 企业优势 -->
+            <div class="about-subcontent">
+                <h4>Our Core Advantages</h4>
+                <div class="about-advantages">
+                    <div class="advantage-item">
+                        <h5>Regulatory Compliance</h5>
+                        <p>Fully compliant with FCA (Financial Conduct Authority) regulatory requirements, all consulting services are based on UK financial industry norms, ensuring legal and compliant operation.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h5>Global Data Network</h5>
+                        <p>Cooperate with 20+ global financial data providers to ensure real-time, accurate and comprehensive market data support for consulting services.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h5>Customized Solutions</h5>
+                        <p>Refuse standardized templates, and formulate exclusive financial solutions according to the actual needs and risk tolerance of each client.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h5>Multilingual Service</h5>
+                        <p>Provide consulting services in 8 languages including English, Chinese, German, French, etc., to meet the needs of global clients.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h5>Post-service Tracking</h5>
+                        <p>Provide 12-month follow-up tracking service for each client, adjust the financial plan in real time according to market changes.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h5>Low-risk Guarantee</h5>
+                        <p>Establish a risk reserve fund to provide corresponding compensation mechanisms for clients in extreme market conditions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Statistics Module -->
+            <div class="data-wrap">
+                <div class="data-item">
+                    <div class="data-block">
+                        <div class="data-num">15+</div>
+                        <div class="data-desc">Years Industry Experience</div>
+                    </div>
+                    <div class="data-block">
+                        <div class="data-num">3200+</div>
+                        <div class="data-desc">Satisfied Global Clients</div>
+                    </div>
+                    <div class="data-block">
+                        <div class="data-num">58</div>
+                        <div class="data-desc">Senior Financial Analysts</div>
+                    </div>
+                    <div class="data-block">
+                        <div class="data-num">98.6%</div>
+                        <div class="data-desc">Client Renewal Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Services -->
+    <section id="services">
+        <div class="container">
+            <div class="sec-title">
+                <h2>Our Core Services</h2>
+                <span></span>
+            </div>
+            <div class="service-grid">
+                <div class="service-card" data-service="market">
+                    <h4>Global Market Analysis</h4>
+                    <p>Real-time financial market trend analysis covering stock, forex and commodity markets, weekly professional market forecast reports delivered to clients regularly.</p>
+                    <span class="service-tag">Market Research</span>
+                </div>
+                <div class="service-card" data-service="personal">
+                    <h4>Personal Asset Consulting</h4>
+                    <p>Customized personal wealth allocation plan based on client income, risk preference and investment cycle to optimize asset structure reasonably.</p>
+                    <span class="service-tag">Personal Finance</span>
+                </div>
+                <div class="service-card" data-service="enterprise">
+                    <h4>Enterprise Financial Advisory</h4>
+                    <p>Enterprise financing consultation, capital structure optimization and industry investment feasibility analysis for small and medium-sized companies.</p>
+                    <span class="service-tag">Corporate Service</span>
+                </div>
+                <div class="service-card" data-service="risk">
+                    <h4>Risk Assessment Service</h4>
+                    <p>Full-range investment risk evaluation to identify potential hidden risks of target products before capital input.</p>
+                    <span class="service-tag">Risk Control</span>
+                </div>
+                <div class="service-card" data-service="report">
+                    <h4>Financial Report Customization</h4>
+                    <p>Exclusive customized financial data reports according to client’s specific investment industry and business demands.</p>
+                    <span class="service-tag">Data Report</span>
+                </div>
+                <div class="service-card" data-service="cross">
+                    <h4>Cross-border Investment Guide</h4>
+                    <p>Overseas market access policy interpretation and cross-border asset allocation guidance for global layout investors.</p>
+                    <span class="service-tag">Global Investment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 新增：服务详情弹窗 -->
+    <div class="service-modal" id="serviceModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">×</span>
+            <h3 id="modalTitle">Global Market Analysis</h3>
+            <div class="service-detail" id="modalContent">
+                <div class="detail-item">
+                    <h5>Service Scope</h5>
+                    <p>Covers major global financial markets including US stock market, European stock market, Asian emerging markets, forex market, gold and crude oil commodity markets, digital asset market, etc.</p>
+                </div>
+                <div class="detail-item">
+                    <h5>Analysis Methodology</h5>
+                    <p>Combine fundamental analysis (macro economy, policy, corporate performance) and technical analysis (K-line pattern, indicator system, volume-price relationship) to form a comprehensive market judgment.</p>
+                </div>
+                <div class="detail-item">
+                    <h5>Delivery Form</h5>
+                    <p>Daily short analysis (10 mins reading), weekly in-depth report (3000+ words), monthly strategy meeting (online video), quarterly on-site analysis seminar.</p>
+                </div>
+                <div class="detail-item">
+                    <h5>Value Highlights</h5>
+                    <p>Provide early warning of market turning points, identify investment opportunities with risk-reward ratio greater than 3:1, and give clear entry and exit point suggestions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Expert Team -->
+    <section id="team">
+        <div class="container">
+            <div class="sec-title">
+                <h2>Our Expert Team</h2>
+                <span></span>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://anasoldi85-lgtm.github.io/1-10/41.jpg" alt="Team Member">
+                    <div class="team-info">
+                        <h5>Robert Wilson</h5>
+                        <span>Chief Financial Analyst</span>
+                        <!-- 新增：团队成员详情 -->
+                        <div class="team-detail">
+                            <p>20 years of experience in global financial market analysis, once served as senior analyst of Goldman Sachs, specializing in macroeconomic research and stock market trend judgment. He has accurately predicted 8 major market turning points in the past 10 years, and his analysis reports are cited by Bloomberg and Reuters many times.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="https://anasoldi85-lgtm.github.io/1-10/42.jpg" alt="Team Member">
+                    <div class="team-info">
+                        <h5>Emma Clark</h5>
+                        <span>Enterprise Consulting Director</span>
+                        <!-- 新增：团队成员详情 -->
+                        <div class="team-detail">
+                            <p>15 years of enterprise financial consulting experience, master's degree in finance from London Business School, has provided financing solutions for more than 500 small and medium-sized enterprises, with a success rate of 85% in financing cases. Specializes in cross-border financing and capital structure optimization of technology enterprises.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="https://anasoldi85-lgtm.github.io/1-10/43.jpg" alt="Team Member">
+                    <div class="team-info">
+                        <h5>David Smith</h5>
+                        <span>Cross-border Investment Advisor</span>
+                        <!-- 新增：团队成员详情 -->
+                        <div class="team-detail">
+                            <p>18 years of cross-border investment experience, familiar with the investment environment and policies of 30+ countries and regions, once served as the Asia-Pacific investment director of a top European asset management company. He is good at helping high-net-worth clients layout global assets and avoid cross-border investment risks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 新增：客户案例板块 -->
+    <section id="cases">
+        <div class="container">
+            <div class="sec-title">
+                <h2>Successful Client Cases</h2>
+                <span></span>
+            </div>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <h4>Personal Asset Allocation Case</h4>
+                    <span class="case-client">Mr. Brown - UK High-net-worth Individual</span>
+                    <p>Client background: 55-year-old entrepreneur with total assets of £8.2 million, expecting stable returns and risk control after retirement.</p>
+                    <p>Service content: Adjusted the original single real estate investment structure, allocated 40% to low-risk bond products, 30% to dividend stocks, 20% to gold and other hedging assets, and 10% to emerging market equity funds.</p>
+                    <p class="case-result">Result: Annualized return of 7.8% in 3 years, with volatility controlled within 5%, far exceeding the client's expected 4% return target.</p>
+                </div>
+                <div class="case-card">
+                    <h4>Enterprise Financial Consulting Case</h4>
+                    <span class="case-client">TechStart Ltd - UK Tech Startup</span>
+                    <p>Client background: A 3-year-old fintech startup with financing needs of £2 million and unclear capital structure.</p>
+                    <p>Service content: Optimized the equity structure, formulated a hybrid financing plan of equity financing (60%) and government innovation fund application (40%), and provided feasibility analysis of entering the European market.</p>
+                    <p class="case-result">Result: Successfully raised £2.3 million in financing within 6 months, and the company's valuation increased by 150% after landing in the German market.</p>
+                </div>
+                <div class="case-card">
+                    <h4>Cross-border Investment Case</h4>
+                    <span class="case-client">Ms. Lee - Hong Kong Individual Investor</span>
+                    <p>Client background: Want to allocate assets to the UK real estate market, but unfamiliar with local policies and market rules.</p>
+                    <p>Service content: Provided policy interpretation of UK real estate investment, tax planning, project screening and due diligence, and formulated a phased investment plan.</p>
+                    <p class="case-result">Result: Successfully purchased 2 commercial properties in London, with an annual rental return of 6.5%, and the property value increased by 12% in 2 years.</p>
+                </div>
+                <div class="case-card">
+                    <h4>Risk Assessment Case</h4>
+                    <span class="case-client">InvestCorp - European Investment Institution</span>
+                    <p>Client background: Planning to invest €50 million in the Southeast Asian energy market, need to assess potential risks.</p>
+                    <p>Service content: Conducted a comprehensive risk assessment covering political risk, market risk, currency risk and operational risk, and proposed corresponding risk mitigation measures.</p>
+                    <p class="case-result">Result: Adjusted the investment scale to €30 million and added currency hedging tools, avoiding losses of about €8 million due to local currency devaluation half a year later.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us -->
+    <section id="contact">
+        <div class="container">
+            <div class="sec-title">
+                <h2>Contact Us</h2>
+                <span></span>
+            </div>
+            <div class="contact-row">
+                <div class="contact-info">
+                    <h3>Get In Touch With NUTEER</h3>
+                    <div class="contact-item">
+                        <strong>Company Address</strong>
+                        <p>England Wells 60 Wirral Park Rd</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Phone Number</strong>
+                        <p>+44 7771370884</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Business Hours</strong>
+                        <p>Monday - Friday: 09:00 - 18:00 (UK Local Time)</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Service Scope</strong>
+                        <p>Global Financial Information Consulting & Customized Financial Solution</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Your Full Name" required>
+                        <input type="email" placeholder="Your Email Address" required>
+                        <input type="tel" placeholder="Your Contact Number">
+                        <textarea rows="5" placeholder="Leave your message or consultation content here..." required></textarea>
+                        <button type="submit">Submit Your Message</button>
+                        <div class="submit-success" id="successTip">Your information has been submitted successfully, our consultant will contact you shortly!</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h4>NUTEER</h4>
+                    <p>Professional financial information consulting company registered in England, committed to providing secure, objective and high-quality financial consulting service for global clients.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <p><a href="#home">Home</a></p>
+                    <p><a href="#about">About Us</a></p>
+                    <p><a href="#services">Services</a></p>
+                    <p><a href="#cases">Client Cases</a></p>
+                    <p><a href="#contact">Contact</a></p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <p>Address: England Wells 60 Wirral Park Rd</p>
+                    <p>Phone: +44 7771370884</p>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2025 NUTEER All Rights Reserved | Financial Information Consulting Service Provider
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        menuBtn.addEventListener('click',()=>{
+            mobileNav.classList.toggle('active');
+        });
+        // Close mobile nav after clicking link
+        const mobileLinks = mobileNav.querySelectorAll('a');
+        mobileLinks.forEach(item=>{
+            item.addEventListener('click',()=>{
+                mobileNav.classList.remove('active');
+            })
+        })
+
+        // Contact form always return submit success
+        const contactForm = document.getElementById('contactForm');
+        const successTip = document.getElementById('successTip');
+        contactForm.addEventListener('submit', function(e){
+            e.preventDefault();
+            successTip.style.display = 'block';
+            contactForm.reset();
+            setTimeout(()=>{
+                successTip.style.display = 'none';
+            },5000)
+        })
+
+        // 新增：服务详情弹窗逻辑
+        const serviceModal = document.getElementById('serviceModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const serviceCards = document.querySelectorAll('.service-card');
+
+        // 服务详情数据
+        const serviceDetails = {
+            market: {
+                title: "Global Market Analysis",
+                content: `
+                    <div class="detail-item">
+                        <h5>Service Scope</h5>
+                        <p>Covers major global financial markets including US stock market, European stock market, Asian emerging markets, forex market, gold and crude oil commodity markets, digital asset market, etc.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Analysis Methodology</h5>
+                        <p>Combine fundamental analysis (macro economy, policy, corporate performance) and technical analysis (K-line pattern, indicator system, volume-price relationship) to form a comprehensive market judgment.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Delivery Form</h5>
+                        <p>Daily short analysis (10 mins reading), weekly in-depth report (3000+ words), monthly strategy meeting (online video), quarterly on-site analysis seminar.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Value Highlights</h5>
+                        <p>Provide early warning of market turning points, identify investment opportunities with risk-reward ratio greater than 3:1, and give clear entry and exit point suggestions.</p>
+                    </div>
+                `
+            },
+            personal: {
+                title: "Personal Asset Consulting",
+                content: `
+                    <div class="detail-item">
+                        <h5>Service Scope</h5>
+                        <p>Covers personal wealth diagnosis, asset allocation planning, retirement planning, tax optimization, inheritance planning and other full-cycle wealth management services.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Service Process</h5>
+                        <p>1. Risk tolerance assessment 2. Financial goal confirmation 3. Asset status diagnosis 4. Solution formulation 5. Implementation tracking 6. Quarterly adjustment</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Target Clients</h5>
+                        <p>High-net-worth individuals, middle-class families, retirees, young professionals and other groups with different asset scales and life stages.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Value Highlights</h5>
+                        <p>Balance risk and return, maximize asset appreciation potential under the premise of meeting the client's risk tolerance and liquidity needs.</p>
+                    </div>
+                `
+            },
+            enterprise: {
+                title: "Enterprise Financial Advisory",
+                content: `
+                    <div class="detail-item">
+                        <h5>Service Scope</h5>
+                        <p>Covers financing planning, capital structure optimization, investment feasibility analysis, financial risk control, tax planning, merger and acquisition consulting, etc.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Service Process</h5>
+                        <p>1. Enterprise financial status diagnosis 2. Demand confirmation 3. Solution design 4. Program implementation 5. Effect tracking 6. Optimization adjustment</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Target Clients</h5>
+                        <p>Small and medium-sized enterprises, startups, family businesses, cross-border enterprises and other types of enterprises in different development stages.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Value Highlights</h5>
+                        <p>Reduce financing costs by an average of 15-20%, optimize capital turnover efficiency, and improve the overall profitability of the enterprise.</p>
+                    </div>
+                `
+            },
+            risk: {
+                title: "Risk Assessment Service",
+                content: `
+                    <div class="detail-item">
+                        <h5>Service Scope</h5>
+                        <p>Covers market risk, credit risk, operational risk, liquidity risk, political risk, currency risk and other types of risk assessment.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Assessment Methodology</h5>
+                        <p>Combine quantitative analysis (VaR model, stress test) and qualitative analysis (expert evaluation, scenario analysis) to form a comprehensive risk assessment report.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Delivery Form</h5>
+                        <p>Risk assessment report (50+ pages), risk early warning system deployment, risk control training for enterprise personnel.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Value Highlights</h5>
+                        <p>Identify potential risks in advance, formulate targeted risk mitigation measures, and reduce potential loss by more than 60%.</p>
+                    </div>
+                `
+            },
+            report: {
+                title: "Financial Report Customization",
+                content: `
+                    <div class="detail-item">
+                        <h5>Service Scope</h5>
+                        <p>Covers market data report, industry analysis report, enterprise financial report, investment performance report, risk monitoring report and other customized reports.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Customization Dimension</h5>
+                        <p>Data dimension, time frequency, presentation form, analysis depth, language version and other multi-dimensional customization according to client needs.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Delivery Form</h5>
+                        <p>Static report (PDF/Excel), dynamic dashboard (web-based), API data interface, regular update service.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Value Highlights</h5>
+                        <p>One-stop data service, avoid data dispersion and low efficiency, and improve the decision-making efficiency of clients by 40%.</p>
+                    </div>
+                `
+            },
+            cross: {
+                title: "Cross-border Investment Guide",
+                content: `
+                    <div class="detail-item">
+                        <h5>Service Scope</h5>
+                        <p>Covers policy interpretation, market research, project screening, due diligence, tax planning, legal compliance, post-investment management and other full-chain services.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Covered Regions</h5>
+                        <p>Europe, North America, Asia-Pacific, Southeast Asia, the Middle East and other major investment regions in the world.</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Service Process</h5>
+                        <p>1. Investment demand confirmation 2. Regional selection 3. Project screening 4. Due diligence 5. Program formulation 6. Implementation assistance</p>
+                    </div>
+                    <div class="detail-item">
+                        <h5>Value Highlights</h5>
+                        <p>Shorten the cross-border investment cycle by an average of 3-6 months, reduce cross-border investment risks, and improve investment success rate by more than 70%.</p>
+                    </div>
+                `
+            }
+        };
+
+        // 打开弹窗
+        serviceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const serviceKey = card.getAttribute('data-service');
+                const serviceData = serviceDetails[serviceKey];
+                modalTitle.textContent = serviceData.title;
+                modalContent.innerHTML = serviceData.content;
+                serviceModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // 禁止页面滚动
+            });
+        });
+
+        // 关闭弹窗
+        closeModal.addEventListener('click', () => {
+            serviceModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // 恢复页面滚动
+        });
+
+        // 点击弹窗外部关闭
+        serviceModal.addEventListener('click', (e) => {
+            if (e.target === serviceModal) {
+                serviceModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
